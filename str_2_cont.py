@@ -183,13 +183,13 @@ def _str_to_num(string):
         str_num = str_num[1:-1]
     # end while
     # Complex number.
-    if re.search(r"\d+(\.\d+)?[+-]{1}\d+(\.\d+)?j", str_num):
+    if re.search(r"[+-]?\d+(\.\d+)?[+-]{1}\d+(\.\d+)?j", str_num):
             return complex(str_num)
     # Floating point number.
-    elif re.search(r"\d+\.\d*(e\d*)?", str_num):
+    elif re.search(r"[+-]?\d+\.\d*(e\d*)?", str_num):
         return float(str_num)
     # Integer.
-    elif re.fullmatch(r"\d+", str_num):
+    elif re.fullmatch(r"[+-]?\d+", str_num):
         return int(str_num)
     else:
         return string
@@ -269,7 +269,7 @@ def _str_to_datetime(string):
 """TEST STRINGS:  UNCOMMENT ONE ONLY TO TEST"""
 
 # LIST
-s = "['28 days, 17:34:00', [], 'day\"s', 'of', 'our', 'lives', ('NBC', 45), {'running time': '45 minutes', 'channels': [13, 15, 28], 'format': None}, (5,), '2018-09-28 22:22:43.467435']"
+s = "['28 days, 17:34:00', [], 'day\"s', 'of', 'our', 'lives', ('NBC', 45), {'running time': '45 minutes', 'channels': [13, -15, 28], 'format': None}, (5,), '2018-09-28 22:22:43.467435']"
     
 # TUPLE
 #s = "('alone', [5, 3, 5], 352, '28 days, 17:34:00', {'key': 'route'})"
