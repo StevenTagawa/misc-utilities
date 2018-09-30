@@ -199,12 +199,13 @@ def _str_to_num(string):
 def _str_to_bool(string):
     """-------------------------------------------------------------
         Method which takes a string literal representation of a
-         boolean (True/False) and converts it to a bool type.
+         boolean (True/False) and converts it to a bool type.  (Also
+         checks for and converts None.)
         
         Arguments:
         - string -- the string to convert.
         
-        Returns:  a bool type, if applicable; or the original
+        Returns:  a bool type or None, if applicable; or the original
          string.
        -------------------------------------------------------------
     """
@@ -215,6 +216,8 @@ def _str_to_bool(string):
         return True
     elif string == "False":
         return False
+    elif string == "None":
+        return None
     else:
         return string
     # end if
@@ -262,9 +265,25 @@ def _str_to_datetime(string):
     # end if
 # end method
 
-s = "['28 days, 17:34:00', [], 'day\"s', 'of', 'our', 'lives', ('NBC', 45), {'running time': '45 minutes', 'channels': [13, 15, 28], 'format': 'soap'}, (5,), '2018-09-28 22:22:43.467435']"
+
+"""TEST STRINGS:  UNCOMMENT ONE ONLY TO TEST"""
+
+# LIST
+s = "['28 days, 17:34:00', [], 'day\"s', 'of', 'our', 'lives', ('NBC', 45), {'running time': '45 minutes', 'channels': [13, 15, 28], 'format': None}, (5,), '2018-09-28 22:22:43.467435']"
+    
+# TUPLE
+#s = "('alone', [5, 3, 5], 352, '28 days, 17:34:00', {'key': 'route'})"
+
+# DICTIONARY
+#s = "{'element': 'earth', 'allowance': False, 'list': [5, 3, 1]}"
 
 l = _str_to_container(s)
+
+print(type(l))
+
+"""OUTPUT CHECK:  UNCOMMENT FIRST BLOCK FOR LIST/TUPLE, SECOND BLOCK FOR
+   DICTIONARY
+"""
 
 for x in l:
     print(type(x), x)
@@ -272,5 +291,6 @@ for x in l:
         for key in x:
             print(key, x[key], type(x[key]))
     
-
+#for key in l:
+#    print(key, l[key], type(l[key]))
 
